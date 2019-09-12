@@ -12,6 +12,7 @@ jobs:
     - run: wmic product get name
     - run: choco install sysinternals
     - run: psinfo -s
+    - run: choco install rktools.2003
     - run: |
         for /f "tokens=2*" %%a in ('reg query "HKLM\Software\Microsoft\NET Framework Setup\NDP\v4\Client" /v Version /reg:32') do set "CurrentNDPv4ClientVersion=%%~b"
         for /f "tokens=2*" %%a in ('reg query "HKLM\Software\Microsoft\NET Framework Setup\NDP\v4\Full" /v Version /reg:32') do set "CurrentNDPv4FullVersion=%%~b"
