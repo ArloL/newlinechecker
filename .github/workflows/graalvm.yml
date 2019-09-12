@@ -9,6 +9,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - run: wmic product get name
+    - run: choco install sysinternals
+    - run: psinfo -s
     - run: choco install dotnetfx --no-progress --force
     - run: choco uninstall dotnetfx --no-progress
     - run: choco install dotnetfx --no-progress
