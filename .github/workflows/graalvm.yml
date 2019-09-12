@@ -9,8 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - run: REG QUERY HKLM\SOFTWARE\Wow6432Node\Microsoft\NET Framework Setup\NDP\v4\Client /v Version
-    - run: REG QUERY HKLM\SOFTWARE\Wow6432Node\Microsoft\NET Framework Setup\NDP\v4\Full /v Version
+    - run: REG QUERY "HKLM\SOFTWARE\Wow6432Node\Microsoft\NET Framework Setup\NDP\v4\Client" /v Version
+    - run: REG QUERY "HKLM\SOFTWARE\Wow6432Node\Microsoft\NET Framework Setup\NDP\v4\Full" /v Version
     - run: wmic product get name
     - run: choco install sysinternals
     - run: psinfo -s
