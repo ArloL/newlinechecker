@@ -9,8 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - run: choco install graalvm
+    - run: choco install graalvm --version=19.1.0
     - name: Build with Maven
       env:
-        JAVA_HOME: 
-      run: mvn package --file pom.xml
+        JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-19.1.0
+      run: mvn --batch-mode package --file pom.xml
