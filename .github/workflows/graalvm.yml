@@ -9,6 +9,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - run: choco install dotnetfx --no-progress
     - run: choco uninstall dotnetfx --no-progress
     - run: choco install dotnet4.0 --no-progress
     - run: choco install windows-sdk-7.1 --no-progress --verbose
