@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - run: choco install dotnetfx --no-progress
+    - run: choco install dotnetfx --no-progress --force
     - run: choco uninstall dotnetfx --no-progress
     - run: choco install dotnetfx --no-progress
     - run: choco install dotnet4.0 --no-progress
