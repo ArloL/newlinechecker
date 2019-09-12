@@ -1,0 +1,16 @@
+name: GraalVM CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - run: choco install graalvm
+    - name: Build with Maven
+      env:
+        JAVA_HOME: 
+      run: mvn package --file pom.xml
