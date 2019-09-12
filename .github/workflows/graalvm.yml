@@ -9,8 +9,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - run: choco install graalvm --version=19.1.0
+    - run: choco install windows-sdk-7.1 kb2519277 --no-progress
+    - run: choco install graalvm --version=19.1.0 --no-progress
     - name: Build with Maven
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-19.1.0
-      run: mvn --batch-mode package --file pom.xml
+      run: |
+        call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd"
+        mvn --batch-mode package --file pom.xml
