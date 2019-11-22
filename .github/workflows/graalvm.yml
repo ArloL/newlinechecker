@@ -13,8 +13,7 @@ jobs:
     - name: Build with Maven
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
+        MAVEN_OPTS: '--add-exports=java.base/jdk.internal.module=ALL-UNNAMED'
       run: |
-        Get-ChildItem -Path "C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0\bin\"
-        & "C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0\bin\gu.cmd" install native-image
         & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT"
         mvn --batch-mode package --file pom.xml
