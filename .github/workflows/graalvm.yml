@@ -15,5 +15,7 @@ jobs:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
         MAVEN_OPTS: --add-exports=jdk.internal.vm.ci/jdk.vm.ci.services=ALL-UNNAMED --add-exports=jdk.internal.vm.compiler/org.graalvm.compiler.options=ALL-UNNAMED
       run: |
+        Remove-Item -Force $env:JAVA_HOME\bin\native-image.cmd
+        Remove-Item -Force $env:JAVA_HOME\bin\native-image.exe
         & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT"
         .\mvnw -X --batch-mode package --file pom.xml
