@@ -16,6 +16,7 @@ jobs:
         & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT"
     - name: Build with Maven
       env:
-        JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-19.3.0
+        JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
       run: |
+        & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT"
         mvn --batch-mode package --file pom.xml
