@@ -14,5 +14,5 @@ jobs:
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-19.3.0
       run: |
-        call "C:\Program Files\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT"
+        & "C:\Program Files\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT"
         mvn --batch-mode package --file pom.xml
