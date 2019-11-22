@@ -14,5 +14,4 @@ jobs:
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-19.3.0
       run: |
-        call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd"
         mvn --batch-mode package --file pom.xml
