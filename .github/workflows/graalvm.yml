@@ -16,4 +16,4 @@ jobs:
         MAVEN_OPTS: --add-exports=java.base/jdk.internal.module=ALL-UNNAMED
       run: |
         & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT"
-        mvn --batch-mode package --file pom.xml
+        mvn -X --batch-mode package --file pom.xml
