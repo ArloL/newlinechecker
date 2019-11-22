@@ -10,10 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: choco install graalvm --version=19.3.0 --no-progress
-    - run: |
-        & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT" -help
-    - run: |
-        & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT"
     - name: Build with Maven
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
