@@ -9,11 +9,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - run: wmic product get name
-    - run: choco install sysinternals
-    - run: psinfo -s
-    - run: choco install rktools.2003
-    - run: choco install windows-sdk-10 --no-progress --verbose
     - run: |
         SET WindowsSdkVersion=
         FOR /F "tokens=1,2*" %%i in ('REG QUERY "%1\SOFTWARE\Microsoft\Microsoft SDKs\Windows" /V "CurrentVersion"') DO (
