@@ -11,11 +11,12 @@ jobs:
     - uses: actions/checkout@v1
     - run: choco install graalvm --version=19.3.0 --no-progress
     - name: Build with Maven
+      shell: cmd
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
         MAVEN_OPTS: --add-exports=jdk.internal.vm.ci/jdk.vm.ci.services=ALL-UNNAMED --add-exports=jdk.internal.vm.compiler/org.graalvm.compiler.options=ALL-UNNAMED
       run: |
-        Remove-Item -Force $env:JAVA_HOME\bin\native-image.cmd  -ErrorAction SilentlyContinue
-        Remove-Item -Force $env:JAVA_HOME\bin\native-image.exe  -ErrorAction SilentlyContinue
-        & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT"
+        del /s %JAVA_HOME%\bin\native-image.cmd
+        del /s %JAVA_HOME%\bin\native-image.exe
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT"
         .\mvnw -X --batch-mode package --file pom.xml
