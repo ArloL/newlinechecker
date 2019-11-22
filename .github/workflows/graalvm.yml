@@ -13,7 +13,7 @@ jobs:
     - name: Build with Maven
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
-        MAVEN_OPTS: --add-exports=java.base/jdk.internal.module=ALL-UNNAMED --add-exports=java.base/jdk.internal.vm.ci=ALL-UNNAMED
+        MAVEN_OPTS: --add-exports=java.base/jdk.internal.module=ALL-UNNAMED --add-exports=jdk.internal.vm.ci=ALL-UNNAMED
       run: |
         & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT"
         ./mvnw -X --batch-mode package --file pom.xml
