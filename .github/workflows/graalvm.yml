@@ -33,11 +33,10 @@ jobs:
       shell: cmd
       working-directory: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
       run: |
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT" -help
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT" & .\bin\native-image.cmd -jar lib\graalvm\svm-driver.jar "-H:Path=C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0\bin"
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\bin\vcvars64.bat" & .\bin\native-image.cmd -jar lib\graalvm\svm-driver.jar "-H:Path=C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0\bin"
     - name: Build with Maven
       shell: cmd
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
       run: |
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.BAT" & .\mvnw -X --batch-mode package --file pom.xml
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\bin\vcvars64.bat" & .\mvnw -X --batch-mode package --file pom.xml
