@@ -39,4 +39,4 @@ jobs:
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
       run: |
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & mvn --batch-mode package --file pom.xml
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & echo %cd% & mvn --batch-mode package --file pom.xml
