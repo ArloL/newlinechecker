@@ -41,4 +41,4 @@ jobs:
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
       run: |
-        "%VCVARS_BAT%" & .\mvnw --batch-mode package
+        "%VCVARS_BAT%" & .\mvnw --batch-mode --settings .\.mvn\github-actions-windows-maven-settings.xml package
