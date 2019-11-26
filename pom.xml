@@ -16,7 +16,21 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <platform>unknown</platform>
     </properties>
+
+    <profiles>
+        <profile>
+            <activation>
+                <property>
+                    <name>env.PLATFORM</name>
+                </property>
+            </activation>
+            <properties>
+                <platform>${env.PLATFORM}</platform>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
