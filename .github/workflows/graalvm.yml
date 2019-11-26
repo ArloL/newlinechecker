@@ -28,15 +28,16 @@ jobs:
   windows:
     runs-on: windows-latest
     steps:
+    - uses: actions/checkout@v1
     - run: choco install graalvm --version=19.3.0 --no-progress
     - name: Build native-image.exe
       shell: cmd
       working-directory: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
       run: |
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & .\bin\native-image.cmd -jar lib\graalvm\svm-driver.jar "-H:Path=C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0\bin"
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & .\bin\native-image.cmd -jar lib\graalvm\svm-driver.jar & move native-image.exe .\bin
     - name: Build with Maven
       shell: cmd
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
       run: |
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & "%cd%\mvnw" --batch-mode package --file "%cd%\pom.xml"
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & .\mvnw --batch-mode package
