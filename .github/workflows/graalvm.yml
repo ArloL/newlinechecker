@@ -1,7 +1,6 @@
 name: GraalVM CI
 
 on: [push]
-
 jobs:
   macos:
     runs-on: macos-latest
@@ -20,13 +19,15 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build with Maven
       run: |
-        wget -q https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-19.3.0/graalvm-ce-java11-linux-amd64-19.3.0.tar.gz
+        wget -q https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-19.3.0graalvm-ce-java11-linux-amd64-19.3.0.tar.gz
         tar xzf graalvm-ce-java11-linux-amd64-19.3.0.tar.gz
         export JAVA_HOME="$(pwd)/graalvm-ce-java11-19.3.0"
         ${JAVA_HOME}/bin/gu install native-image
         ./mvnw --batch-mode package
   windows:
     runs-on: windows-latest
+    env:
+      VCVARS_BAT: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat
     steps:
     - uses: actions/checkout@v1
     - run: choco install graalvm --version=19.3.0 --no-progress
@@ -34,10 +35,10 @@ jobs:
       shell: cmd
       working-directory: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
       run: |
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & .\bin\native-image.cmd -jar lib\graalvm\svm-driver.jar & move native-image.exe .\bin
+        "%VCVARS_BAT%" & .\bin\native-image.cmd -jar lib\graalvm\svm-driver.jar & move native-image.exe .\bin
     - name: Build with Maven
       shell: cmd
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
       run: |
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat" & .\mvnw --batch-mode package
+        "%VCVARS_BAT%" & .\mvnw --batch-mode package
