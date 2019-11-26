@@ -45,6 +45,7 @@
     </dependencies>
 
     <build>
+        <finalName>${artifactId}-${platform}-${version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
