@@ -27,7 +27,7 @@ jobs:
         tar xzf graalvm-ce-java11-linux-amd64-19.3.0.tar.gz
         export JAVA_HOME="$(pwd)/graalvm-ce-java11-19.3.0"
         ${JAVA_HOME}/bin/gu install native-image
-        ./mvnw --batch-mode package
+        ./mvnw --batch-mode deploy -Dregistry=https://maven.pkg.github.com/ArloL -Dtoken=${{ secrets.GITHUB_TOKEN }}
   windows:
     runs-on: windows-latest
     env:
