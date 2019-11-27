@@ -1,1 +1,7 @@
-[]
+[
+{
+  "name":"org.eclipse.jgit.internal.JGitText",
+  "allPublicFields":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+}
+]
