@@ -17,6 +17,7 @@
     <properties>
         <java.version>1.8</java.version>
         <platform>unknown</platform>
+        <mainClass>io.github.arlol.newlinechecker.NewlinecheckerApplication</mainClass>
     </properties>
 
     <profiles>
@@ -48,12 +49,27 @@
         <finalName>${project.artifactId}-${platform}-${project.version}</finalName>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <mainClass>${mainClass}</mainClass>
+                    <executable>${env.JAVA_HOME}/bin/java</executable>
+                    <arguments>
+                        <argument>-agentlib:native-image-agent=config-merge-dir=./src/main/resources/META-INF/native-image</argument>
+                        <argument>-classpath</argument>
+                        <classpath/>
+                        <argument>${mainClass}</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>io.github.arlol.newlinechecker.NewlinecheckerApplication</mainClass>
+                            <mainClass>${mainClass}</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
