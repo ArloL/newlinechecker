@@ -40,7 +40,9 @@ jobs:
       shell: cmd
       working-directory: C:\Program Files\GraalVM\graalvm-ce-java11-19.3.0
       run: |
-        "%VCVARS_BAT%" & .\bin\native-image.cmd -jar lib\graalvm\svm-driver.jar & move native-image.exe .\bin
+        call "%VCVARS_BAT%"
+        .\bin\native-image.cmd -jar lib\graalvm\svm-driver.jar
+        move native-image.exe .\bin
     - name: Build with Maven
       shell: cmd
       env:
