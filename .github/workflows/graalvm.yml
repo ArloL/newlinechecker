@@ -41,8 +41,7 @@ jobs:
       working-directory: C:\Program Files\GraalVM\graalvm-ce-java11-20.0.0
       run: |
         call "%VCVARS_BAT%"
-        call .\bin\native-image.cmd -jar lib\graalvm\svm-driver.jar
-        move native-image.exe .\bin
+        "%JAVA_HOME%"/bin/gu install native-image
     - name: Build with Maven
       shell: cmd
       env:
