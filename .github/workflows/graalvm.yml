@@ -42,7 +42,6 @@ jobs:
       run: |
         call "%VCVARS_BAT%"
         call .\bin\gu install native-image
-        move native-image.exe .\bin
     - name: Build with Maven
       shell: cmd
       env:
