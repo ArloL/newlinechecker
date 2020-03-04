@@ -36,16 +36,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: choco install graalvm --version=20.0.0 --no-progress
-    - name: Build native-image.exe
-      shell: cmd
-      working-directory: C:\Program Files\GraalVM\graalvm-ce-java11-20.0.0
-      run: |
-        call "%VCVARS_BAT%"
-        call .\bin\gu install native-image
     - name: Build with Maven
       shell: cmd
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-20.0.0
       run: |
+        call "%JAVA_HOME%\bin\gu" install native-image
         call "%VCVARS_BAT%"
         .\mvnw --batch-mode --settings .\.mvn\github-actions-windows-maven-settings.xml package
