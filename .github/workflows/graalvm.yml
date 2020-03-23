@@ -4,8 +4,6 @@ on: [push]
 jobs:
   macos:
     runs-on: macos-latest
-    env:
-      PLATFORM: macos
     steps:
     - uses: actions/checkout@v1
     - name: Build with Maven
@@ -17,8 +15,6 @@ jobs:
         ./mvnw --batch-mode package
   ubuntu:
     runs-on: ubuntu-latest
-    env:
-      PLATFORM: linux
     steps:
     - uses: actions/checkout@v1
     - name: Build with Maven
@@ -32,7 +28,6 @@ jobs:
     runs-on: windows-latest
     env:
       VCVARS_BAT: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat
-      PLATFORM: windows
     steps:
     - uses: actions/checkout@v1
     - run: choco install graalvm --version=20.0.0 --no-progress
