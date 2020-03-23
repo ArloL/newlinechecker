@@ -70,7 +70,6 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}-${platform}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
