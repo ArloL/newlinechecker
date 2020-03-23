@@ -19,6 +19,12 @@ jobs:
         export JAVA_HOME="$(pwd)/graalvm-ce-java11-20.0.0/Contents/Home/"
         ${JAVA_HOME}/bin/gu install native-image
         ./mvnw --batch-mode package
+        mkdir target/artifacts
+        cp target/newlinechecker-* target/artifacts
+    - uses: actions/upload-artifact@v1
+      with:
+        name: newlinechecker artifacts from ${{runner.os}} build
+        path: target/artifacts
   ubuntu:
     runs-on: ubuntu-latest
     steps:
@@ -36,6 +42,12 @@ jobs:
         export JAVA_HOME="$(pwd)/graalvm-ce-java11-20.0.0"
         ${JAVA_HOME}/bin/gu install native-image
         ./mvnw --batch-mode package
+        mkdir target/artifacts
+        cp target/newlinechecker-* target/artifacts
+    - uses: actions/upload-artifact@v1
+      with:
+        name: newlinechecker artifacts from ${{runner.os}} build
+        path: target/artifacts
   windows:
     runs-on: windows-latest
     env:
@@ -56,4 +68,10 @@ jobs:
       run: |
         call "%JAVA_HOME%\bin\gu" install native-image
         call "%VCVARS_BAT%"
-        .\mvnw --batch-mode --settings .\.mvn\github-actions-windows-maven-settings.xml package
+        call .\mvnw --batch-mode --settings .\.mvn\github-actions-windows-maven-settings.xml package
+        mkdir target\artifacts
+        copy target\newlinechecker-* target\artifacts
+    - uses: actions/upload-artifact@v1
+      with:
+        name: newlinechecker artifacts from ${{runner.os}} build
+        path: target/artifacts
