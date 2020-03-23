@@ -21,17 +21,41 @@
     </properties>
 
     <profiles>
-        <profile>
-            <activation>
-                <property>
-                    <name>env.PLATFORM</name>
-                </property>
-            </activation>
-            <properties>
-                <platform>${env.PLATFORM}</platform>
-            </properties>
-        </profile>
-    </profiles>
+		<profile>
+			<id>mac</id>
+			<activation>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+			<properties>
+				<platform>mac</platform>
+			</properties>
+		</profile>
+		<profile>
+			<id>unix</id>
+			<activation>
+				<os>
+					<family>unix</family>
+					<name>Linux</name>
+				</os>
+			</activation>
+			<properties>
+				<platform>linux</platform>
+			</properties>
+		</profile>
+		<profile>
+			<id>windows</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<platform>windows</platform>
+			</properties>
+		</profile>
+	</profiles>
 
     <dependencies>
         <dependency>
