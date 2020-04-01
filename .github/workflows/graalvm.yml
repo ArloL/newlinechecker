@@ -43,7 +43,7 @@ jobs:
         tar xzf graalvm-ce-java11-linux-amd64-20.0.0.tar.gz
         export JAVA_HOME="$(pwd)/graalvm-ce-java11-20.0.0"
         ${JAVA_HOME}/bin/gu install native-image
-        apt-get install upx-ucl
+        sudo apt-get install upx-ucl
         ./mvnw --batch-mode package
         upx --brute target/newlinechecker-linux-*
         mkdir target/artifacts
