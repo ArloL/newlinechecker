@@ -55,6 +55,34 @@
 				<platform>windows</platform>
 			</properties>
 		</profile>
+		<profile>
+			<id>graal</id>
+			<activation>
+				<file>
+					<exists>${env.JAVA_HOME}/bin/gu</exists>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.ArloL</groupId>
+						<artifactId>native-image-maven-plugin</artifactId>
+						<version>482856dfa2</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>native-image</goal>
+								</goals>
+								<phase>package</phase>
+							</execution>
+						</executions>
+						<configuration>
+							<imageName>${project.artifactId}-${platform}-${project.version}</imageName>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
     <dependencies>
