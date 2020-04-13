@@ -59,7 +59,7 @@
 			<id>graal</id>
 			<activation>
 				<file>
-					<exists>${env.JAVA_HOME}/bin/gu</exists>
+					<exists>${env.JAVA_HOME}/GRAALVM-README.md</exists>
 				</file>
 			</activation>
 			<build>
