@@ -21,69 +21,69 @@
     </properties>
 
     <profiles>
-		<profile>
-			<id>mac</id>
-			<activation>
-				<os>
-					<family>mac</family>
-				</os>
-			</activation>
-			<properties>
-				<platform>mac</platform>
-			</properties>
-		</profile>
-		<profile>
-			<id>unix</id>
-			<activation>
-				<os>
-					<family>unix</family>
-					<name>Linux</name>
-				</os>
-			</activation>
-			<properties>
-				<platform>linux</platform>
-			</properties>
-		</profile>
-		<profile>
-			<id>windows</id>
-			<activation>
-				<os>
-					<family>windows</family>
-				</os>
-			</activation>
-			<properties>
-				<platform>windows</platform>
-			</properties>
-		</profile>
-		<profile>
-			<id>graal</id>
-			<activation>
-				<file>
-					<exists>${env.JAVA_HOME}/GRAALVM-README.md</exists>
-				</file>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.github.ArloL</groupId>
-						<artifactId>native-image-maven-plugin</artifactId>
-						<version>482856dfa2</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>native-image</goal>
-								</goals>
-								<phase>package</phase>
-							</execution>
-						</executions>
-						<configuration>
-							<imageName>${project.artifactId}-${platform}-${project.version}</imageName>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+        <profile>
+            <id>mac</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+                <platform>mac</platform>
+            </properties>
+        </profile>
+        <profile>
+            <id>unix</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <name>Linux</name>
+                </os>
+            </activation>
+            <properties>
+                <platform>linux</platform>
+            </properties>
+        </profile>
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <platform>windows</platform>
+            </properties>
+        </profile>
+        <profile>
+            <id>graal</id>
+            <activation>
+                <file>
+                    <exists>${env.JAVA_HOME}/GRAALVM-README.md</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.ArloL</groupId>
+                        <artifactId>native-image-maven-plugin</artifactId>
+                        <version>482856dfa2</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>native-image</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <imageName>${project.artifactId}-${platform}-${project.version}</imageName>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -108,7 +108,7 @@
                     <arguments>
                         <argument>-agentlib:native-image-agent=config-merge-dir=./src/main/resources/META-INF/native-image</argument>
                         <argument>-classpath</argument>
-                        <classpath/>
+                        <classpath />
                         <argument>${mainClass}</argument>
                     </arguments>
                 </configuration>
@@ -130,7 +130,7 @@
     <pluginRepositories>
         <pluginRepository>
             <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
+            <url>https://jitpack.io</url>
         </pluginRepository>
     </pluginRepositories>
 
