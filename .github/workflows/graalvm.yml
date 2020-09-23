@@ -64,6 +64,10 @@ jobs:
           -Dsha1="${GITHUB_SHA}" \
           -Drevision="${GITHUB_SHA}" \
           package
+        ./target/newlinechecker-linux-*        
+        # see https://github.com/upx/upx/issues/405#issuecomment-688342502
+        # re-add upx when updating from graalvm 20.2.0 to 20.3.0
+        # upx --brute target/newlinechecker-linux-*
         ./target/newlinechecker-linux-*
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
