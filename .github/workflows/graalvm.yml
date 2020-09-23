@@ -17,9 +17,9 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
       run: |
-        wget -q https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.0.0/graalvm-ce-java11-darwin-amd64-20.0.0.tar.gz
-        tar xzf graalvm-ce-java11-darwin-amd64-20.0.0.tar.gz
-        export JAVA_HOME="$(pwd)/graalvm-ce-java11-20.0.0/Contents/Home/"
+        wget -q https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.2.0/graalvm-ce-java11-darwin-amd64-20.2.0.tar.gz
+        tar xzf graalvm-ce-java11-darwin-amd64-20.2.0.tar.gz
+        export JAVA_HOME="$(pwd)/graalvm-ce-java11-20.2.0/Contents/Home/"
         ${JAVA_HOME}/bin/gu install native-image
         brew install upx
         ./mvnw --batch-mode package
@@ -42,9 +42,9 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
       run: |
-        wget -q https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.0.0/graalvm-ce-java11-linux-amd64-20.0.0.tar.gz
-        tar xzf graalvm-ce-java11-linux-amd64-20.0.0.tar.gz
-        export JAVA_HOME="$(pwd)/graalvm-ce-java11-20.0.0"
+        wget -q https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.2.0/graalvm-ce-java11-linux-amd64-20.2.0.tar.gz
+        tar xzf graalvm-ce-java11-linux-amd64-20.2.0.tar.gz
+        export JAVA_HOME="$(pwd)/graalvm-ce-java11-20.2.0"
         ${JAVA_HOME}/bin/gu install native-image
         sudo apt-get install upx-ucl
         ./mvnw --batch-mode package
@@ -61,7 +61,7 @@ jobs:
       VCVARS_BAT: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat
     steps:
     - uses: actions/checkout@v1
-    - run: choco install graalvm --version=20.0.0 --no-progress
+    - run: choco install graalvm --version=20.2.0 --no-progress
     - run: choco install upx --version=3.96 --no-progress
     - name: Cache Maven packages
       uses: actions/cache@v1
@@ -72,7 +72,7 @@ jobs:
     - name: Build with Maven
       shell: cmd
       env:
-        JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-20.0.0
+        JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-20.2.0
       run: |
         call "%JAVA_HOME%\bin\gu" install native-image
         call "%VCVARS_BAT%"
