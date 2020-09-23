@@ -4,5 +4,7 @@
     {"pattern":"org/eclipse/jgit/internal/JGitText.properties"}, 
     {"pattern":"org/slf4j/impl/StaticLoggerBinder.class"}
   ],
-  "bundles":[]
+  "bundles":[
+    {"name":"org.eclipse.jgit.internal.JGitText"}
+  ]
 }
