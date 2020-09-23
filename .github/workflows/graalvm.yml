@@ -65,7 +65,7 @@ jobs:
           -Drevision="${GITHUB_SHA}" \
           package
         ./target/newlinechecker-linux-*
-        upx --brute target/newlinechecker-linux-*
+        upx target/newlinechecker-linux-*
         ./target/newlinechecker-linux-*
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
