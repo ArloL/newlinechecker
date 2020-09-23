@@ -25,7 +25,11 @@ jobs:
         export JAVA_HOME="$(pwd)/graalvm-ce-java11-20.2.0/Contents/Home/"
         ${JAVA_HOME}/bin/gu install native-image
         brew install upx
-        ./mvnw --batch-mode package
+        ./mvnw \
+          --batch-mode \
+          -Dsha1="${GITHUB_SHA}" \
+          -Drevision="${GITHUB_SHA}" \
+          package
         upx --brute target/newlinechecker-mac-*
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
@@ -53,7 +57,11 @@ jobs:
         export JAVA_HOME="$(pwd)/graalvm-ce-java11-20.2.0"
         ${JAVA_HOME}/bin/gu install native-image
         sudo apt-get install upx-ucl
-        ./mvnw --batch-mode package
+        ./mvnw \
+          --batch-mode \
+          -Dsha1="${GITHUB_SHA}" \
+          -Drevision="${GITHUB_SHA}" \
+          package
         upx --brute target/newlinechecker-linux-*
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
@@ -85,7 +93,7 @@ jobs:
       run: |
         call "%JAVA_HOME%\bin\gu" install native-image
         call "%VCVARS_BAT%"
-        call .\mvnw --batch-mode --settings .\.mvn\github-actions-windows-maven-settings.xml package
+        call .\mvnw --batch-mode -Dsha1="%GITHUB_SHA%" -Drevision="%GITHUB_SHA%" --settings .\.mvn\github-actions-windows-maven-settings.xml  package
         upx --brute target/newlinechecker-windows-*
         mkdir target\artifacts
         copy target\newlinechecker-* target\artifacts
