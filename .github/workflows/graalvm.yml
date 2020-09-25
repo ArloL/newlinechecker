@@ -100,7 +100,9 @@ jobs:
         call "%JAVA_HOME%\bin\gu" install native-image
         call "%VCVARS_BAT%"
         call .\mvnw --batch-mode -Dsha1="%GITHUB_SHA%" -Drevision="%GITHUB_SHA%" --settings .\.mvn\github-actions-windows-maven-settings.xml  package
+        .\target\newlinechecker-windows-%GITHUB_SHA%
         upx --brute target/newlinechecker-windows-*
+        .\target\newlinechecker-windows-%GITHUB_SHA%
         mkdir target\artifacts
         copy target\newlinechecker-* target\artifacts
     - uses: actions/upload-artifact@v1
