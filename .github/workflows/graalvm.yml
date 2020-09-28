@@ -30,9 +30,9 @@ jobs:
           -Dsha1="${GITHUB_SHA}" \
           -Drevision="${GITHUB_SHA}" \
           package
-        ./target/newlinechecker-mac-*
+        ./target/newlinechecker-mac-* || true
         upx --brute target/newlinechecker-mac-*
-        ./target/newlinechecker-mac-*
+        ./target/newlinechecker-mac-* || true
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
@@ -64,11 +64,11 @@ jobs:
           -Dsha1="${GITHUB_SHA}" \
           -Drevision="${GITHUB_SHA}" \
           package
-        ./target/newlinechecker-linux-*        
+        ./target/newlinechecker-linux-* || true
         # see https://github.com/upx/upx/issues/405#issuecomment-688342502
         # re-add upx when updating from graalvm 20.2.0 to 20.3.0
         # upx --brute target/newlinechecker-linux-*
-        ./target/newlinechecker-linux-*
+        ./target/newlinechecker-linux-* || true
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
