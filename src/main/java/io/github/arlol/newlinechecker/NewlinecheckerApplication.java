@@ -1,5 +1,7 @@
 package io.github.arlol.newlinechecker;
 
+import static java.util.stream.Collectors.toList;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -23,15 +25,16 @@ public class NewlinecheckerApplication {
 
 	public static void main(String[] args)
 			throws IOException, InterruptedException {
-		Stream.concat(jgit().stream(), git().stream())
+		List<File> files = Stream.concat(jgit().stream(), git().stream())
 				.filter(NewlinecheckerApplication::filterByFilename)
 				.distinct()
 				.map(File::new)
 				.filter(NewlinecheckerApplication::checkIfNewlineAtEof)
-				.forEach(file -> {
-					System.out
-							.println(file + " does not have a newline at EOF");
-				});
+				.collect(toList());
+		files.forEach(file -> {
+			System.out.println(file + " does not have a newline at EOF");
+		});
+		System.exit(files.isEmpty() ? 0 : 1);
 	}
 
 	private static List<String> jgit() throws IOException {
