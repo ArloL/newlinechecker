@@ -82,7 +82,7 @@ public class NewlinecheckerApplication {
 			if (fileIsEmptyOrBinary(randomAccessFile)) {
 				return false;
 			}
-			randomAccessFile.seek(file.length() - 1);
+			randomAccessFile.seek(randomAccessFile.length() - 1);
 			return randomAccessFile.read() != 10;
 		} catch (IOException e) {
 			throw new UncheckedIOException(e);
