@@ -1,0 +1,2 @@
+src/test/resources/windows-* text eol=crlf
+src/test/resources/unix-* text eol=lf
