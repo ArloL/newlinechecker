@@ -30,9 +30,9 @@ jobs:
           -Dsha1="${GITHUB_SHA}" \
           -Drevision="${GITHUB_SHA}" \
           package
-        ./target/newlinechecker-mac-* || true
-        upx --brute target/newlinechecker-mac-*
-        ./target/newlinechecker-mac-* || true
+        "./target/newlinechecker-mac-${GITHUB_SHA}" || true
+        upx --brute "target/newlinechecker-mac-${GITHUB_SHA}"
+        "./target/newlinechecker-mac-${GITHUB_SHA}" || true
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
@@ -64,11 +64,11 @@ jobs:
           -Dsha1="${GITHUB_SHA}" \
           -Drevision="${GITHUB_SHA}" \
           package
-        ./target/newlinechecker-linux-* || true
+        "./target/newlinechecker-linux-${GITHUB_SHA}" || true
         # see https://github.com/upx/upx/issues/405#issuecomment-688342502
         # re-add upx when updating from graalvm 20.2.0 to 20.3.0
-        # upx --brute target/newlinechecker-linux-*
-        ./target/newlinechecker-linux-* || true
+        # upx --brute "target/newlinechecker-linux-${GITHUB_SHA}"
+        "./target/newlinechecker-linux-${GITHUB_SHA}" || true
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
@@ -100,9 +100,9 @@ jobs:
         call "%JAVA_HOME%\bin\gu" install native-image
         call "%VCVARS_BAT%"
         call .\mvnw --batch-mode -Dsha1="%GITHUB_SHA%" -Drevision="%GITHUB_SHA%" --settings .\.mvn\github-actions-windows-maven-settings.xml  package
-        .\target\newlinechecker-windows-%GITHUB_SHA%
-        upx --brute target/newlinechecker-windows-*
-        .\target\newlinechecker-windows-%GITHUB_SHA%
+        .\target\newlinechecker-windows-%GITHUB_SHA%.exe
+        upx --brute target/newlinechecker-windows-%GITHUB_SHA%.exe
+        .\target\newlinechecker-windows-%GITHUB_SHA%.exe
         mkdir target\artifacts
         copy target\newlinechecker-* target\artifacts
     - uses: actions/upload-artifact@v1
