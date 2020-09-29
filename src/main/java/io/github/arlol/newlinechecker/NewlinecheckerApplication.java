@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -43,7 +44,7 @@ public class NewlinecheckerApplication {
 				.build();
 				RevWalk revWalk = new RevWalk(repository);
 				TreeWalk treeWalk = new TreeWalk(repository)) {
-			ObjectId headId = repository.resolve("HEAD");
+			ObjectId headId = repository.resolve(Constants.HEAD);
 			RevCommit headCommit = revWalk.parseCommit(headId);
 			treeWalk.addTree(headCommit.getTree());
 			while (treeWalk.next()) {
