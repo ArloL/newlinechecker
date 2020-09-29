@@ -22,8 +22,7 @@ import org.eclipse.jgit.treewalk.TreeWalk;
 
 public class NewlinecheckerApplication {
 
-	public static void main(String[] args)
-			throws IOException, InterruptedException {
+	public static void main(String[] args) throws Exception {
 		var files = Stream.concat(jgit().stream(), git().stream())
 				.filter(NewlinecheckerApplication::filterByFilename)
 				.distinct()
