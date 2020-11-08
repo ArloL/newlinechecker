@@ -142,7 +142,9 @@ jobs:
       uses: actions/download-artifact@v2
     - name: Build project
       run: |
-        zip --junk-paths my-artifact README.md
+        zip windows.zip "newlinechecker artifacts from Windows build/"
+        zip linux.zip "newlinechecker artifacts from Linux build/"
+        zip macos.zip "newlinechecker artifacts from macOS build/"
     - run: ls -lsa *
     - name: Create Release
       id: create_release
@@ -159,6 +161,24 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./my-artifact.zip
-        asset_name: my-artifact.zip
+        asset_path: ./linux.zip
+        asset_name: linux.zip
+        asset_content_type: application/zip
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./windows.zip
+        asset_name: windows.zip
+        asset_content_type: application/zip
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./macos.zip
+        asset_name: macos.zip
         asset_content_type: application/zip
