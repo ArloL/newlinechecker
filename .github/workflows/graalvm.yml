@@ -35,9 +35,9 @@ jobs:
           -Dsha1="${GITHUB_SHA}" \
           -Drevision="${REVISION}" \
           package
-        "./target/newlinechecker-mac-${REVISION}"
-        upx --brute "target/newlinechecker-mac-${REVISION}"
-        "./target/newlinechecker-mac-${REVISION}"
+        "./target/newlinechecker-macos-${REVISION}"
+        upx --brute "target/newlinechecker-macos-${REVISION}"
+        "./target/newlinechecker-macos-${REVISION}"
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
