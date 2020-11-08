@@ -154,6 +154,7 @@ jobs:
       with:
         tag_name: ${{ needs.version.outputs.new_tag }}
         release_name: Release ${{ needs.version.outputs.new_version }}
+        body: ${{ needs.version.outputs.changelog }}
         draft: true
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
