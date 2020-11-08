@@ -44,7 +44,7 @@ jobs:
       with:
         name: newlinechecker-artifacts-${{ github.job }}
         path: target/artifacts
-  ubuntu:
+  linux:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1

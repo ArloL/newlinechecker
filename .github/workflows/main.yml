@@ -58,7 +58,7 @@ jobs:
       with:
         name: newlinechecker-artifacts-${{ github.job }}
         path: target/artifacts
-  ubuntu:
+  linux:
     runs-on: ubuntu-latest
     needs: version
     steps:
@@ -135,7 +135,7 @@ jobs:
         path: target/artifacts
   release:
     runs-on: ubuntu-latest
-    needs: [version, macos, ubuntu, windows]
+    needs: [version, macos, linux, windows]
     steps:
     - uses: actions/checkout@v1
     - name: Download all workflow run artifacts
