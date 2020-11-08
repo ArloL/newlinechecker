@@ -56,7 +56,7 @@ jobs:
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker-artifacts-${{ github.job }}
+        name: newlinechecker-artifacts-${{ github.job }}-${{ github.sha }}
         path: target/artifacts
   linux:
     runs-on: ubuntu-latest
@@ -95,7 +95,7 @@ jobs:
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker-artifacts-${{ github.job }}
+        name: newlinechecker-artifacts-${{ github.job }}-${{ github.sha }}
         path: target/artifacts
   windows:
     runs-on: windows-latest
@@ -131,7 +131,7 @@ jobs:
         copy target\newlinechecker-* target\artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker-artifacts-${{ github.job }}
+        name: newlinechecker-artifacts-${{ github.job }}-${{ github.sha }}
         path: target/artifacts
   release:
     runs-on: ubuntu-latest
@@ -142,9 +142,9 @@ jobs:
       uses: actions/download-artifact@v2
     - name: Build project
       run: |
-        zip -r windows.zip newlinechecker-artifacts-windows/
-        zip -r linux.zip newlinechecker-artifacts-linux/
-        zip -r macos.zip newlinechecker-artifacts-macos/
+        zip -r windows.zip newlinechecker-artifacts-windows-${{ github.sha }}/
+        zip -r linux.zip newlinechecker-artifacts-linux-${{ github.sha }}/
+        zip -r macos.zip newlinechecker-artifacts-macos-${{ github.sha }}/
     - run: ls -lsa *
     - name: Create Release
       id: create_release
