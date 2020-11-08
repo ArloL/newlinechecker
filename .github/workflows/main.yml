@@ -56,7 +56,7 @@ jobs:
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker artifacts from ${{runner.os}} build
+        name: newlinechecker-artifacts-${{ github.job }}
         path: target/artifacts
   ubuntu:
     runs-on: ubuntu-latest
@@ -95,7 +95,7 @@ jobs:
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker artifacts from ${{runner.os}} build
+        name: newlinechecker-artifacts-${{ github.job }}
         path: target/artifacts
   windows:
     runs-on: windows-latest
@@ -131,7 +131,7 @@ jobs:
         copy target\newlinechecker-* target\artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker artifacts from ${{runner.os}} build
+        name: newlinechecker-artifacts-${{ github.job }}
         path: target/artifacts
   release:
     runs-on: ubuntu-latest
@@ -142,9 +142,9 @@ jobs:
       uses: actions/download-artifact@v2
     - name: Build project
       run: |
-        zip -r windows.zip "newlinechecker artifacts from Windows build/"
-        zip -r linux.zip "newlinechecker artifacts from Linux build/"
-        zip -r macos.zip "newlinechecker artifacts from macOS build/"
+        zip -r windows.zip newlinechecker-artifacts-windows/
+        zip -r linux.zip newlinechecker-artifacts-linux/
+        zip -r macos.zip newlinechecker-artifacts-macos/
     - run: ls -lsa *
     - name: Create Release
       id: create_release
