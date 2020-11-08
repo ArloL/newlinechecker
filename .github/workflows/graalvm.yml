@@ -22,6 +22,8 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
+      env:
+        REVISION: ${{ github.sha }}
       run: |
         wget -q https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.2.0/graalvm-ce-java11-darwin-amd64-20.2.0.tar.gz
         tar xzf graalvm-ce-java11-darwin-amd64-20.2.0.tar.gz
@@ -31,11 +33,11 @@ jobs:
         ./mvnw \
           --batch-mode \
           -Dsha1="${GITHUB_SHA}" \
-          -Drevision="${GITHUB_SHA}" \
+          -Drevision="${REVISION}" \
           package
-        "./target/newlinechecker-mac-${GITHUB_SHA}"
-        upx --brute "target/newlinechecker-mac-${GITHUB_SHA}"
-        "./target/newlinechecker-mac-${GITHUB_SHA}"
+        "./target/newlinechecker-mac-${REVISION}"
+        upx --brute "target/newlinechecker-mac-${REVISION}"
+        "./target/newlinechecker-mac-${REVISION}"
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
@@ -56,6 +58,8 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
+      env:
+        REVISION: ${{ github.sha }}
       run: |
         wget -q https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.2.0/graalvm-ce-java11-linux-amd64-20.2.0.tar.gz
         tar xzf graalvm-ce-java11-linux-amd64-20.2.0.tar.gz
@@ -65,13 +69,13 @@ jobs:
         ./mvnw \
           --batch-mode \
           -Dsha1="${GITHUB_SHA}" \
-          -Drevision="${GITHUB_SHA}" \
+          -Drevision="${REVISION}" \
           package
-        "./target/newlinechecker-linux-${GITHUB_SHA}"
+        "./target/newlinechecker-linux-${REVISION}"
         # see https://github.com/upx/upx/issues/405#issuecomment-688342502
         # re-add upx when updating from graalvm 20.2.0 to 20.3.0
-        # upx --brute "target/newlinechecker-linux-${GITHUB_SHA}"
-        "./target/newlinechecker-linux-${GITHUB_SHA}"
+        # upx --brute "target/newlinechecker-linux-${REVISION}"
+        "./target/newlinechecker-linux-${REVISION}"
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
@@ -99,13 +103,14 @@ jobs:
       shell: cmd
       env:
         JAVA_HOME: C:\Program Files\GraalVM\graalvm-ce-java11-20.2.0
+        REVISION: ${{ github.sha }}
       run: |
         call "%JAVA_HOME%\bin\gu" install native-image
         call "%VCVARS_BAT%"
-        call .\mvnw --batch-mode -Dsha1="%GITHUB_SHA%" -Drevision="%GITHUB_SHA%" --settings .\.mvn\github-actions-windows-maven-settings.xml  package
-        .\target\newlinechecker-windows-%GITHUB_SHA%.exe
-        upx --brute target/newlinechecker-windows-%GITHUB_SHA%.exe
-        .\target\newlinechecker-windows-%GITHUB_SHA%.exe
+        call .\mvnw --batch-mode -Dsha1="%GITHUB_SHA%" -Drevision="%REVISION%" --settings .\.mvn\github-actions-windows-maven-settings.xml  package
+        .\target\newlinechecker-windows-%REVISION%.exe
+        upx --brute target/newlinechecker-windows-%REVISION%.exe
+        .\target\newlinechecker-windows-%REVISION%.exe
         mkdir target\artifacts
         copy target\newlinechecker-* target\artifacts
     - uses: actions/upload-artifact@v1
