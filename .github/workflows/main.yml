@@ -142,9 +142,9 @@ jobs:
       uses: actions/download-artifact@v2
     - name: Build project
       run: |
-        zip windows.zip "newlinechecker artifacts from Windows build/"
-        zip linux.zip "newlinechecker artifacts from Linux build/"
-        zip macos.zip "newlinechecker artifacts from macOS build/"
+        zip -r windows.zip "newlinechecker artifacts from Windows build/"
+        zip -r linux.zip "newlinechecker artifacts from Linux build/"
+        zip -r macos.zip "newlinechecker artifacts from macOS build/"
     - run: ls -lsa *
     - name: Create Release
       id: create_release
