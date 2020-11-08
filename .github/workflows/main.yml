@@ -148,7 +148,6 @@ jobs:
         zip -r windows.zip newlinechecker-artifacts-windows-${{ github.sha }}/
         zip -r linux.zip newlinechecker-artifacts-linux-${{ github.sha }}/
         zip -r macos.zip newlinechecker-artifacts-macos-${{ github.sha }}/
-    - run: ls -lsa *
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
