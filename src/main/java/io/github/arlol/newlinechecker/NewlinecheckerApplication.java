@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -66,7 +67,8 @@ public class NewlinecheckerApplication {
 				.asList("git", "grep", "-I", "--files-with-matches", "\"\""))
 				.start();
 		try (BufferedReader bufferedReader = new BufferedReader(
-				new InputStreamReader(process.getInputStream()))) {
+				new InputStreamReader(process.getInputStream(),
+						StandardCharsets.UTF_8))) {
 			return bufferedReader.lines().collect(Collectors.toList());
 		} finally {
 			process.waitFor();
