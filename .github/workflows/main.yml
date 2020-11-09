@@ -56,7 +56,7 @@ jobs:
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker-artifacts-${{ github.job }}-${{ github.sha }}
+        name: newlinechecker-artifacts-${{ github.job }}-${{ needs.version.outputs.new_version }}
         path: target/artifacts
   linux:
     runs-on: ubuntu-latest
@@ -95,7 +95,7 @@ jobs:
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker-artifacts-${{ github.job }}-${{ github.sha }}
+        name: newlinechecker-artifacts-${{ github.job }}-${{ needs.version.outputs.new_version }}
         path: target/artifacts
   windows:
     runs-on: windows-latest
@@ -131,7 +131,7 @@ jobs:
         copy target\newlinechecker-* target\artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker-artifacts-${{ github.job }}-${{ github.sha }}
+        name: newlinechecker-artifacts-${{ github.job }}-${{ needs.version.outputs.new_version }}
         path: target/artifacts
   release:
     runs-on: ubuntu-latest
@@ -145,9 +145,6 @@ jobs:
     - name: Build project
       working-directory: target
       run: |
-        mv -f newlinechecker-artifacts-windows-${{ github.sha }} newlinechecker-windows-${{ needs.version.outputs.new_version }}
-        mv -f newlinechecker-artifacts-linux-${{ github.sha }} newlinechecker-linux-${{ needs.version.outputs.new_version }}
-        mv -f newlinechecker-artifacts-macos-${{ github.sha }} newlinechecker-macos-${{ needs.version.outputs.new_version }}
         zip -r windows.zip newlinechecker-windows-${{ needs.version.outputs.new_version }}/
         zip -r linux.zip newlinechecker-linux-${{ needs.version.outputs.new_version }}/
         zip -r macos.zip newlinechecker-macos-${{ needs.version.outputs.new_version }}/
