@@ -56,7 +56,7 @@ jobs:
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker-artifacts-${{ github.job }}-${{ needs.version.outputs.new_version }}
+        name: newlinechecker-${{ github.job }}-${{ needs.version.outputs.new_version }}
         path: target/artifacts
   linux:
     runs-on: ubuntu-latest
@@ -95,7 +95,7 @@ jobs:
         cp target/newlinechecker-* target/artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker-artifacts-${{ github.job }}-${{ needs.version.outputs.new_version }}
+        name: newlinechecker-${{ github.job }}-${{ needs.version.outputs.new_version }}
         path: target/artifacts
   windows:
     runs-on: windows-latest
@@ -131,7 +131,7 @@ jobs:
         copy target\newlinechecker-* target\artifacts
     - uses: actions/upload-artifact@v1
       with:
-        name: newlinechecker-artifacts-${{ github.job }}-${{ needs.version.outputs.new_version }}
+        name: newlinechecker-${{ github.job }}-${{ needs.version.outputs.new_version }}
         path: target/artifacts
   release:
     runs-on: ubuntu-latest
