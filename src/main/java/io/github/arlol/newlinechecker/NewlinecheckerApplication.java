@@ -21,6 +21,8 @@ import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.jgit.treewalk.TreeWalk;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 public class NewlinecheckerApplication {
 
 	public static void main(String[] args) throws Exception {
@@ -35,6 +37,7 @@ public class NewlinecheckerApplication {
 		System.exit(files.isEmpty() ? 0 : 1);
 	}
 
+	@SuppressFBWarnings(value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE", justification = "FileRepositoryBuilder uses generics which spotbugs cant know")
 	private static List<String> jgit() throws IOException {
 		List<String> result = new ArrayList<>();
 		try (Repository repository = new FileRepositoryBuilder()
