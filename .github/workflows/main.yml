@@ -54,7 +54,7 @@ jobs:
         "./target/newlinechecker-macos-${REVISION}"
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
-    - uses: actions/upload-artifact@v2.2.1
+    - uses: actions/upload-artifact@v2.2.2
       with:
         name: newlinechecker-${{ github.job }}-${{ needs.version.outputs.new_version }}
         path: target/artifacts
@@ -91,7 +91,7 @@ jobs:
         "./target/newlinechecker-linux-${REVISION}"
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
-    - uses: actions/upload-artifact@v2.2.1
+    - uses: actions/upload-artifact@v2.2.2
       with:
         name: newlinechecker-${{ github.job }}-${{ needs.version.outputs.new_version }}
         path: target/artifacts
@@ -127,7 +127,7 @@ jobs:
         .\target\newlinechecker-windows-%REVISION%.exe
         mkdir target\artifacts
         copy target\newlinechecker-* target\artifacts
-    - uses: actions/upload-artifact@v2.2.1
+    - uses: actions/upload-artifact@v2.2.2
       with:
         name: newlinechecker-${{ github.job }}-${{ needs.version.outputs.new_version }}
         path: target/artifacts
