@@ -42,6 +42,7 @@ jobs:
       env:
         REVISION: ${{ needs.version.outputs.new_version }}
       run: |
+        set -o xtrace
         wget -q https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-${{ env.GRAALVM_VERSION }}/graalvm-ce-java11-darwin-amd64-${{ env.GRAALVM_VERSION }}.tar.gz
         tar xzf graalvm-ce-java11-darwin-amd64-${{ env.GRAALVM_VERSION }}.tar.gz
         export JAVA_HOME="$(pwd)/graalvm-ce-java11-${{ env.GRAALVM_VERSION }}/Contents/Home/"
@@ -79,6 +80,7 @@ jobs:
       env:
         REVISION: ${{ needs.version.outputs.new_version }}
       run: |
+        set -o xtrace
         wget -q https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz
         tar xf upx-3.96-amd64_linux.tar.xz
         wget -q https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-${{ env.GRAALVM_VERSION }}/graalvm-ce-java11-linux-amd64-${{ env.GRAALVM_VERSION }}.tar.gz
