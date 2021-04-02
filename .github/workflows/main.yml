@@ -93,7 +93,7 @@ jobs:
           -Drevision="${REVISION}" \
           verify
         "./target/newlinechecker-linux-${REVISION}"
-        ./upx-3.96-amd64_linux/upx --brute "target/newlinechecker-linux-${REVISION}"
+        ./upx-3.96-amd64_linux/upx "target/newlinechecker-linux-${REVISION}"
         "./target/newlinechecker-linux-${REVISION}"
         mkdir target/artifacts
         cp target/newlinechecker-* target/artifacts
