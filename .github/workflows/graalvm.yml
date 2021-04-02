@@ -8,7 +8,7 @@ on:
     - cron: '50 6 21 * *'
 
 env:
-  GRAALVM_VERSION: 21.0.0
+  GRAALVM_VERSION: 21.0.0.2
 
 jobs:
   macos:
