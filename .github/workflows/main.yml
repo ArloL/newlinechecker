@@ -187,9 +187,9 @@ jobs:
         call .\mvnw --batch-mode -Dsha1="%GITHUB_SHA%" -Drevision="%REVISION%" --settings .\.github\github-actions-windows-maven-settings.xml verify
     - name: Test and compress executable
       run: |
-        "./target/${{ env.ARTIFACT }}-windows-%REVISION%.exe"
-        upx "target/${{ env.ARTIFACT }}-windows-%REVISION%.exe"
-        "./target/${{ env.ARTIFACT }}-windows-%REVISION%.exe"
+        "./target/${{ env.ARTIFACT }}-windows-$env:REVISION.exe"
+        upx "target/${{ env.ARTIFACT }}-windows-$env:REVISION.exe"
+        "./target/${{ env.ARTIFACT }}-windows-$env:REVISION.exe"
     - name: Move artifacts
       run: |
         mkdir target/artifacts
