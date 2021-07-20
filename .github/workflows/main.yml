@@ -79,9 +79,9 @@ jobs:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
-    - name: install native-image module
+    - name: Install native-image module
       run: gu install native-image
-    - name: install upx
+    - name: Install upx
       run: brew install upx
     - name: Build with Maven
       run: |
@@ -126,9 +126,9 @@ jobs:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
-    - name: install native-image module
+    - name: Install native-image module
       run: gu install native-image
-    - name: install upx
+    - name: Install upx
       run: |
         wget -q https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz
         tar xf upx-3.96-amd64_linux.tar.xz
@@ -177,9 +177,9 @@ jobs:
         path: .m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
-    - name: install native-image module
+    - name: Install native-image module
       run: gu install native-image
-    - name: install upx
+    - name: Install upx
       run: brew install upx
     - name: Build with Maven
       shell: cmd
