@@ -177,7 +177,7 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
     - name: Install native-image module
-      run: '& gu install native-image'
+      run: gu.exe install native-image
     - name: Install upx
       run: choco install upx --version=3.96 --no-progress
     - name: Build with Maven
