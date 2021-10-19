@@ -42,7 +42,10 @@ public class NewlinecheckerApplication {
 		System.exit(files.isEmpty() ? 0 : 1);
 	}
 
-	@SuppressFBWarnings(value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE", justification = "FileRepositoryBuilder uses generics which spotbugs cant know")
+	@SuppressFBWarnings(
+			value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
+			justification = "FileRepositoryBuilder uses generics which spotbugs cant know"
+	)
 	private static List<String> jgit() throws IOException {
 		List<String> result = new ArrayList<>();
 		try (Repository repository = new FileRepositoryBuilder()
@@ -67,12 +70,23 @@ public class NewlinecheckerApplication {
 	}
 
 	private static List<String> git() throws IOException, InterruptedException {
-		Process process = new ProcessBuilder().command(Arrays
-				.asList("git", "grep", "-I", "--files-with-matches", "\"\""))
+		Process process = new ProcessBuilder()
+				.command(
+						Arrays.asList(
+								"git",
+								"grep",
+								"-I",
+								"--files-with-matches",
+								"\"\""
+						)
+				)
 				.start();
 		try (BufferedReader bufferedReader = new BufferedReader(
-				new InputStreamReader(process.getInputStream(),
-						StandardCharsets.UTF_8))) {
+				new InputStreamReader(
+						process.getInputStream(),
+						StandardCharsets.UTF_8
+				)
+		)) {
 			return bufferedReader.lines().collect(Collectors.toList());
 		} finally {
 			process.waitFor();
@@ -84,8 +98,10 @@ public class NewlinecheckerApplication {
 	}
 
 	public static boolean checkIfNewlineAtEof(String file) {
-		try (RandomAccessFile randomAccessFile = new RandomAccessFile(file,
-				"r")) {
+		try (RandomAccessFile randomAccessFile = new RandomAccessFile(
+				file,
+				"r"
+		)) {
 			if (fileIsEmptyOrBinary(randomAccessFile)) {
 				return false;
 			}
