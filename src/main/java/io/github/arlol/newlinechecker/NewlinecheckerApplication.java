@@ -27,6 +27,10 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 public class NewlinecheckerApplication {
 
 	public static void main(String[] args) throws Exception {
+		if (args.length == 1 && "--version".equals(args[0])) {
+			System.out.println(new ManifestVersionProvider().getVersion());
+			System.exit(0);
+		}
 		var files = Stream.concat(jgit().stream(), git().stream())
 				.filter(NewlinecheckerApplication::filterByFilename)
 				.distinct()
