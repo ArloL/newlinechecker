@@ -7,6 +7,7 @@ on:
 env:
   ARTIFACT: newlinechecker
   GRAALVM_VERSION: 21.3.0
+  JAVA_VERSION: 17
 
 jobs:
   debug:
@@ -66,13 +67,13 @@ jobs:
     - uses: actions/checkout@v2.3.5
     - uses: actions/setup-java@v2
       with:
-        java-version: '11'
+        java-version: ${{ env.JAVA_VERSION }}
         distribution: 'adopt'
     - name: Setup Graalvm
       uses: DeLaGuardo/setup-graalvm@5.0
       with:
         graalvm: ${{ env.GRAALVM_VERSION }}
-        java: 'java11'
+        java: java${{ env.JAVA_VERSION }}
     - name: Cache Maven packages
       uses: actions/cache@v2.1.6
       with:
@@ -113,13 +114,13 @@ jobs:
     - uses: actions/checkout@v2.3.5
     - uses: actions/setup-java@v2
       with:
-        java-version: '11'
+        java-version: ${{ env.JAVA_VERSION }}
         distribution: 'adopt'
     - name: Setup Graalvm
       uses: DeLaGuardo/setup-graalvm@5.0
       with:
         graalvm: ${{ env.GRAALVM_VERSION }}
-        java: 'java11'
+        java: java${{ env.JAVA_VERSION }}
     - name: Cache Maven packages
       uses: actions/cache@v2.1.6
       with:
@@ -163,13 +164,13 @@ jobs:
     - uses: actions/checkout@v2.3.5
     - uses: actions/setup-java@v2
       with:
-        java-version: '11'
+        java-version: ${{ env.JAVA_VERSION }}
         distribution: 'adopt'
     - name: Setup Graalvm
       uses: DeLaGuardo/setup-graalvm@5.0
       with:
         graalvm: ${{ env.GRAALVM_VERSION }}
-        java: 'java11'
+        java: java${{ env.JAVA_VERSION }}
     - name: Cache Maven packages
       uses: actions/cache@v2.1.6
       with:
@@ -264,7 +265,7 @@ jobs:
     - uses: actions/checkout@v2.3.5
     - uses: actions/setup-java@v2
       with:
-        java-version: '11'
+        java-version: ${{ env.JAVA_VERSION }}
         distribution: 'adopt'
     - name: Cache Maven packages
       uses: actions/cache@v2.1.6
