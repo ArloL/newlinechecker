@@ -14,7 +14,7 @@ else
 fi
 
 wget --quiet \
-    --output-document="~/bin/newlinechecker" \
+    --output-document="${HOME}/bin/newlinechecker" \
     "https://github.com/ArloL/newlinechecker/releases/latest/download/newlinechecker-${platform}"
 
-chmod +x "~/bin/newlinechecker"
+chmod +x "${HOME}/bin/newlinechecker"
