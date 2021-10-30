@@ -1,12 +1,12 @@
-name: "CodeQL"
+name: CodeQL Analysis
 
 on:
   push:
-    branches: [ master,main ]
+    branches: main
   pull_request:
-    branches: [ master,main ]
+    branches: main
   schedule:
-    - cron: '32 8 * * 4'
+  - cron: '4 20 * * 3'
 env:
   JAVA_VERSION: 17
 
@@ -47,7 +47,7 @@ jobs:
     - uses: actions/setup-java@v2
       with:
         java-version: ${{ env.JAVA_VERSION }}
-        distribution: 'adopt'
+        distribution: adopt
     - name: Cache Maven packages
       uses: actions/cache@v2.1.6
       with:
