@@ -1,9 +1,9 @@
-name: GraalVM CI Main
+name: Main
 
 on:
   push:
   schedule:
-  - cron: 50 6 21 * *
+  - cron: '17 4 5 * *'
 env:
   ARTIFACT: newlinechecker
   GRAALVM_VERSION: 21.3.0
@@ -68,22 +68,22 @@ jobs:
     - uses: actions/setup-java@v2
       with:
         java-version: ${{ env.JAVA_VERSION }}
-        distribution: 'adopt'
+        distribution: adopt
     - name: Setup Graalvm
       uses: DeLaGuardo/setup-graalvm@5.0
       with:
         graalvm: ${{ env.GRAALVM_VERSION }}
         java: java${{ env.JAVA_VERSION }}
+    - name: Install native-image module
+      run: gu install native-image
+    - name: Install upx
+      run: brew install upx
     - name: Cache Maven packages
       uses: actions/cache@v2.1.6
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
-    - name: Install native-image module
-      run: gu install native-image
-    - name: Install upx
-      run: brew install upx
     - name: Build with Maven
       run: |
         set -o xtrace
@@ -115,24 +115,24 @@ jobs:
     - uses: actions/setup-java@v2
       with:
         java-version: ${{ env.JAVA_VERSION }}
-        distribution: 'adopt'
+        distribution: adopt
     - name: Setup Graalvm
       uses: DeLaGuardo/setup-graalvm@5.0
       with:
         graalvm: ${{ env.GRAALVM_VERSION }}
         java: java${{ env.JAVA_VERSION }}
-    - name: Cache Maven packages
-      uses: actions/cache@v2.1.6
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2
     - name: Install native-image module
       run: gu install native-image
     - name: Install upx
       run: |
         wget -q https://github.com/upx/upx/releases/download/v3.96/upx-3.96-amd64_linux.tar.xz
         tar xf upx-3.96-amd64_linux.tar.xz
+    - name: Cache Maven packages
+      uses: actions/cache@v2.1.6
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
       run: |
         set -o xtrace
@@ -165,22 +165,22 @@ jobs:
     - uses: actions/setup-java@v2
       with:
         java-version: ${{ env.JAVA_VERSION }}
-        distribution: 'adopt'
+        distribution: adopt
     - name: Setup Graalvm
       uses: DeLaGuardo/setup-graalvm@5.0
       with:
         graalvm: ${{ env.GRAALVM_VERSION }}
         java: java${{ env.JAVA_VERSION }}
+    - name: Install native-image module
+      run: '& "$env:JAVA_HOME\bin\gu" install native-image'
+    - name: Install upx
+      run: choco install upx --version=3.96 --no-progress
     - name: Cache Maven packages
       uses: actions/cache@v2.1.6
       with:
         path: .m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
-    - name: Install native-image module
-      run: '& "$env:JAVA_HOME\bin\gu" install native-image'
-    - name: Install upx
-      run: choco install upx --version=3.96 --no-progress
     - name: Build with Maven
       shell: cmd
       run: |
@@ -194,7 +194,7 @@ jobs:
     - name: Move artifacts
       run: |
         mkdir target/artifacts
-        cp target/${{ env.ARTIFACT }}-* target/artifacts
+        copy target/${{ env.ARTIFACT }}-* target/artifacts
     - uses: actions/upload-artifact@v2.2.4
       with:
         name: ${{ env.ARTIFACT }}-${{ github.job }}-${{ needs.version.outputs.new_version }}
@@ -293,7 +293,7 @@ jobs:
     - uses: actions/setup-java@v2
       with:
         java-version: ${{ env.JAVA_VERSION }}
-        distribution: 'adopt'
+        distribution: adopt
     - name: Cache Maven packages
       uses: actions/cache@v2.1.6
       with:
