@@ -95,7 +95,7 @@ public class NewlinecheckerApplication {
 				process.waitFor();
 			}
 		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
+			throw new IllegalStateException(e);
 		} catch (IOException e) {
 			throw new UncheckedIOException(e);
 		}
