@@ -26,7 +26,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 public class NewlinecheckerApplication {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		if (args.length == 1 && "--version".equals(args[0])) {
 			System.out.println(new ManifestVersionProvider().getVersion());
 			System.exit(0);
@@ -46,7 +46,7 @@ public class NewlinecheckerApplication {
 			value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
 			justification = "FileRepositoryBuilder uses generics which spotbugs cant know"
 	)
-	private static List<String> jgit() throws IOException {
+	private static List<String> jgit() {
 		List<String> result = new ArrayList<>();
 		try (Repository repository = new FileRepositoryBuilder()
 				.setMustExist(true)
@@ -65,31 +65,39 @@ public class NewlinecheckerApplication {
 					result.add(treeWalk.getPathString());
 				}
 			}
+		} catch (IOException e) {
+			throw new UncheckedIOException(e);
 		}
 		return result;
 	}
 
-	private static List<String> git() throws IOException, InterruptedException {
-		Process process = new ProcessBuilder()
-				.command(
-						Arrays.asList(
-								"git",
-								"grep",
-								"-I",
-								"--files-with-matches",
-								"\"\""
-						)
-				)
-				.start();
-		try (BufferedReader bufferedReader = new BufferedReader(
-				new InputStreamReader(
-						process.getInputStream(),
-						StandardCharsets.UTF_8
-				)
-		)) {
-			return bufferedReader.lines().collect(Collectors.toList());
-		} finally {
-			process.waitFor();
+	private static List<String> git() {
+		try {
+			Process process = new ProcessBuilder()
+					.command(
+							Arrays.asList(
+									"git",
+									"grep",
+									"-I",
+									"--files-with-matches",
+									"\"\""
+							)
+					)
+					.start();
+			try (BufferedReader bufferedReader = new BufferedReader(
+					new InputStreamReader(
+							process.getInputStream(),
+							StandardCharsets.UTF_8
+					)
+			)) {
+				return bufferedReader.lines().collect(Collectors.toList());
+			} finally {
+				process.waitFor();
+			}
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new UncheckedIOException(e);
 		}
 	}
 
