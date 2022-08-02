@@ -91,22 +91,22 @@ jobs:
           verify
     - name: Test and compress executable
       run: |
-        expectedOutput="chorito version ""$env:REVISION"""
-        firstOutput=$("./target/${{ env.ARTIFACT }}-macos-${REVISION}" --version)
-        upx "target/${{ env.ARTIFACT }}-macos-${REVISION}"
-        secondOutput=$("./target/${{ env.ARTIFACT }}-macos-${REVISION}" --version)
-        if [ $firstOutput != $expectedOutput ]; then
+        expectedOutput="chorito version ""${REVISION}"""
+        firstOutput=$("./target/${ARTIFACT}-macos-${REVISION}" --version)
+        upx "target/${ARTIFACT}-macos-${REVISION}"
+        secondOutput=$("./target/${ARTIFACT}-macos-${REVISION}" --version)
+        if [ "$firstOutput" != "$expectedOutput" ]; then
           echo "The first output is wrong. Expected:"
-          echo $expectedOutput
+          echo "$expectedOutput"
           echo "Got:"
-          echo $firstOutput
+          echo "$firstOutput"
           exit 1
         fi
-        if [ $secondOutput != $expectedOutput ]; then 
+        if [ "$secondOutput" != "$expectedOutput" ]; then
           echo "The second output is wrong. Expected:"
-          echo $expectedOutput
+          echo "$expectedOutput"
           echo "Got:"
-          echo $secondOutput
+          echo "$secondOutput"
           exit 1
         fi
     - name: Move artifacts
@@ -152,22 +152,22 @@ jobs:
           verify
     - name: Test and compress executable
       run: |
-        expectedOutput="chorito version ""$env:REVISION"""
-        firstOutput=$("./target/${{ env.ARTIFACT }}-linux-${REVISION}" --version)
-        ./upx-3.96-amd64_linux/upx "target/${{ env.ARTIFACT }}-linux-${REVISION}"
-        secondOutput=$("./target/${{ env.ARTIFACT }}-linux-${REVISION}" --version)
-        if [ $firstOutput != $expectedOutput ]; then
+        expectedOutput="chorito version ""${REVISION}"""
+        firstOutput=$("./target/${ARTIFACT}-macos-${REVISION}" --version)
+        ./upx-3.96-amd64_linux/upx "target/${ARTIFACT}-linux-${REVISION}"
+        secondOutput=$("./target/${ARTIFACT}-macos-${REVISION}" --version)
+        if [ "$firstOutput" != "$expectedOutput" ]; then
           echo "The first output is wrong. Expected:"
-          echo $expectedOutput
+          echo "$expectedOutput"
           echo "Got:"
-          echo $firstOutput
+          echo "$firstOutput"
           exit 1
         fi
-        if [ $secondOutput != $expectedOutput ]; then 
+        if [ "$secondOutput" != "$expectedOutput" ]; then
           echo "The second output is wrong. Expected:"
-          echo $expectedOutput
+          echo "$expectedOutput"
           echo "Got:"
-          echo $secondOutput
+          echo "$secondOutput"
           exit 1
         fi
     - name: Move artifacts
