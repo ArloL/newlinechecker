@@ -153,9 +153,9 @@ jobs:
     - name: Test and compress executable
       run: |
         expectedOutput="chorito version ""${REVISION}"""
-        firstOutput=$("./target/${ARTIFACT}-macos-${REVISION}" --version)
+        firstOutput=$("./target/${ARTIFACT}-linux-${REVISION}" --version)
         ./upx-3.96-amd64_linux/upx "target/${ARTIFACT}-linux-${REVISION}"
-        secondOutput=$("./target/${ARTIFACT}-macos-${REVISION}" --version)
+        secondOutput=$("./target/${ARTIFACT}-linux-${REVISION}" --version)
         if [ "$firstOutput" != "$expectedOutput" ]; then
           echo "The first output is wrong. Expected:"
           echo "$expectedOutput"
