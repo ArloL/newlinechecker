@@ -210,7 +210,7 @@ jobs:
         .\mvnw --batch-mode -Dsha1="$env:GITHUB_SHA" -Drevision="$env:REVISION" verify
     - name: Test and compress executable
       run: |
-        $expectedOutput = "${ARTIFACT} version `"$env:REVISION`"`r`n"
+        $expectedOutput = "${{ env.ARTIFACT }} version `"$env:REVISION`"`r`n"
         $firstOutput = & "./target/${{ env.ARTIFACT }}-windows-$env:REVISION.exe" --% "--version" | Out-String
         upx "target/${{ env.ARTIFACT }}-windows-$env:REVISION.exe"
         $secondOutput = & "./target/${{ env.ARTIFACT }}-windows-$env:REVISION.exe" --% "--version" | Out-String
