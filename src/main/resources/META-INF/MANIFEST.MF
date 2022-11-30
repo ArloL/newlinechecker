@@ -1,3 +1,0 @@
-Description: This is a Manifest only for testing purposes
-Implementation-Title: newlinechecker
-Implementation-Version: 0.0.1-SNAPSHOT

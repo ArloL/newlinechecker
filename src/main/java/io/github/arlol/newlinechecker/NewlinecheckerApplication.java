@@ -28,8 +28,12 @@ public class NewlinecheckerApplication {
 
 	public static void main(String[] args) {
 		if (args.length == 1 && "--version".equals(args[0])) {
-			System.out.println(new ManifestVersionProvider().getVersion());
-			System.exit(0);
+			String title = NewlinecheckerApplication.class.getPackage()
+					.getImplementationTitle();
+			String version = NewlinecheckerApplication.class.getPackage()
+					.getImplementationVersion();
+			System.out.println(title + " version \"" + version + "\"");
+			return;
 		}
 		var files = Stream.concat(jgit().stream(), git().stream())
 				.filter(NewlinecheckerApplication::filterByFilename)
