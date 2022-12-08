@@ -8,6 +8,8 @@ on:
   schedule:
   - cron: '42 3 13 * *'
 
+concurrency: chores
+
 jobs:
   debug:
     runs-on: ubuntu-latest
