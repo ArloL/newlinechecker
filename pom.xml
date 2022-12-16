@@ -15,10 +15,10 @@
 	<version>${revision}</version>
 
 	<scm>
-		<connection>scm:git:https://github.com/ArloL/newlinechecker.git</connection>
-		<developerConnection>scm:git:https://github.com/ArloL/newlinechecker.git</developerConnection>
+		<connection>scm:git:https://github.com/ArloL/newlinechecker</connection>
+		<developerConnection>scm:git:https://github.com/ArloL/newlinechecker</developerConnection>
 		<tag>${sha1}</tag>
-		<url>https://github.com/ArloL/newlinechecker/</url>
+		<url>https://github.com/ArloL/newlinechecker</url>
 	</scm>
 
 	<licenses>
