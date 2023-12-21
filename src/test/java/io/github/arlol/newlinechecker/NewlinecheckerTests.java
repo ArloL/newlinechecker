@@ -1,12 +1,12 @@
 package io.github.arlol.newlinechecker;
 
 import static io.github.arlol.newlinechecker.NewlinecheckerApplication.checkIfNewlineAtEof;
-import static org.junit.Assert.assertEquals;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NewlinecheckerTests {
 
@@ -38,7 +38,10 @@ public class NewlinecheckerTests {
 	private void test(boolean expected, String content) throws Exception {
 		Path tempFile = Files.createTempFile(null, null);
 		Files.writeString(tempFile, content);
-		assertEquals(expected, checkIfNewlineAtEof(tempFile.toString()));
+		Assertions.assertEquals(
+				expected,
+				checkIfNewlineAtEof(tempFile.toString())
+		);
 	}
 
 }
