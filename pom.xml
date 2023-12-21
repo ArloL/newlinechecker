@@ -93,6 +93,9 @@
 						</executions>
 						<configuration>
 							<imageName>${project.artifactId}-${platform}-${project.version}</imageName>
+							<metadataRepository>
+								<enabled>true</enabled>
+							</metadataRepository>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -245,7 +248,7 @@
 					</arguments>
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 		<pluginManagement>
 			<plugins>
