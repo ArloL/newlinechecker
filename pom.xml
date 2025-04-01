@@ -75,7 +75,7 @@
 			<id>graal</id>
 			<activation>
 				<file>
-					<exists>${env.JAVA_HOME}/lib/libnative-image-agent.dylib</exists>
+					<exists>${env.JAVA_HOME}/lib/graal</exists>
 				</file>
 			</activation>
 			<build>
