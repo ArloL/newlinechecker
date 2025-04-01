@@ -1,34 +1,29 @@
 [
-{
-  "name":"java.security.SecureRandomParameters"
-},
-{
-  "name":"org.eclipse.jgit.internal.JGitText",
-  "allPublicFields":true,
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"org.eclipse.jgit.lib.CoreConfig$LogRefUpdates",
-  "methods":[{"name":"values","parameterTypes":[] }]
-},
-{
-  "name":"org.eclipse.jgit.lib.CoreConfig$TrustLooseRefStat",
-  "methods":[{"name":"values","parameterTypes":[] }]
-},
-{
-  "name":"org.eclipse.jgit.lib.CoreConfig$TrustPackedRefsStat",
-  "methods":[{"name":"values","parameterTypes":[] }]
-},
-{
-  "name":"sun.security.provider.NativePRNG",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"sun.security.provider.SHA",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "name":"sun.security.provider.SHA2$SHA256",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
-}
+  {
+    "name": "org.eclipse.jgit.lib.CoreConfig$LogRefUpdates",
+    "methods": [
+      {
+        "name": "values",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.eclipse.jgit.lib.CoreConfig$TrustLooseRefStat",
+    "methods": [
+      {
+        "name": "values",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "org.eclipse.jgit.lib.CoreConfig$TrustStat",
+    "methods": [
+      {
+        "name": "values",
+        "parameterTypes": []
+      }
+    ]
+  }
 ]
