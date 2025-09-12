@@ -3,7 +3,7 @@ name: Main
 on:
   push:
   schedule:
-  - cron: '50 15 12 * *'
+  - cron: '27 8 16 * *'
 permissions: {}
 env:
   ARTIFACT: newlinechecker
