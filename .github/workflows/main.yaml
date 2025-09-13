@@ -4,6 +4,7 @@ on:
   push:
   schedule:
   - cron: '27 8 16 * *'
+  workflow_dispatch:
 permissions: {}
 env:
   ARTIFACT: newlinechecker
