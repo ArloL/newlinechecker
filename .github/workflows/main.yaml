@@ -9,7 +9,7 @@ permissions: {}
 env:
   ARTIFACT: newlinechecker
   GRAALVM_VERSION: 22.2.0
-  JAVA_VERSION: 21
+  JAVA_VERSION: 25
 
 jobs:
   debug:
