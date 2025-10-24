@@ -8,8 +8,6 @@ on:
   schedule:
   - cron: '27 10 23 * *'
 permissions: {}
-env:
-  JAVA_VERSION: 25
 
 jobs:
   debug:
@@ -61,7 +59,7 @@ jobs:
         persist-credentials: false
     - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
       with:
-        java-version: ${{ env.JAVA_VERSION }}
+        java-version-file: .java-version
         distribution: temurin
         cache: 'maven'
     - name: Initialize CodeQL

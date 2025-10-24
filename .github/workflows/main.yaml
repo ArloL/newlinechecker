@@ -76,7 +76,7 @@ jobs:
         persist-credentials: false
     - uses: graalvm/setup-graalvm@2a2412009026a83f51d179f92dc2b3fd4c8142df # v1.4.1
       with:
-        java-version: ${{ env.JAVA_VERSION }}
+        java-version-file: .java-version
         distribution: graalvm
         github-token: ${{ secrets.GITHUB_TOKEN }}
         cache: 'maven'
@@ -112,7 +112,7 @@ jobs:
         persist-credentials: false
     - uses: graalvm/setup-graalvm@2a2412009026a83f51d179f92dc2b3fd4c8142df # v1.4.1
       with:
-        java-version: ${{ env.JAVA_VERSION }}
+        java-version-file: .java-version
         distribution: graalvm
         github-token: ${{ secrets.GITHUB_TOKEN }}
         cache: 'maven'
@@ -148,7 +148,7 @@ jobs:
         persist-credentials: false
     - uses: graalvm/setup-graalvm@2a2412009026a83f51d179f92dc2b3fd4c8142df # v1.4.1
       with:
-        java-version: ${{ env.JAVA_VERSION }}
+        java-version-file: .java-version
         distribution: graalvm
         github-token: ${{ secrets.GITHUB_TOKEN }}
         cache: 'maven'
@@ -259,7 +259,7 @@ jobs:
         persist-credentials: false
     - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
       with:
-        java-version: ${{ env.JAVA_VERSION }}
+        java-version-file: .java-version
         distribution: temurin
         cache: 'maven'
     - name: Publish to GitHub Packages Apache Maven
