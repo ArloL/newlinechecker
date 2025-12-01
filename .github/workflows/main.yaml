@@ -287,6 +287,9 @@ jobs:
     - macos
     - linux
     - windows
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "This is just a workflow to use as the required status check"
   trigger-livecheck:
     needs: release
     runs-on: ubuntu-latest
