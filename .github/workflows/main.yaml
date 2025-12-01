@@ -282,6 +282,11 @@ jobs:
           deploy
     - name: Make sure build did not change anything
       run: git diff --exit-code
+  required-status-check:
+    needs:
+    - macos
+    - linux
+    - windows
   trigger-livecheck:
     needs: release
     runs-on: ubuntu-latest
