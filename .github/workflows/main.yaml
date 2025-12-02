@@ -283,7 +283,7 @@ jobs:
     - name: Make sure build did not change anything
       run: git diff --exit-code
   required-status-check:
-    name: "main.required-status-check"
+    name: main.required-status-check
     needs:
     - macos
     - linux
