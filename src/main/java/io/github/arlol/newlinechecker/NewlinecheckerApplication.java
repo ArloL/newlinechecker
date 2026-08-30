@@ -77,7 +77,7 @@ public class NewlinecheckerApplication {
 	// Resolving git through PATH is intended: this is a developer CLI and it
 	// must use whatever git the user has installed (Homebrew, Nix, Windows).
 	@SuppressWarnings("java:S4036")
-	private static List<String> git() {
+	static List<String> git() {
 		try {
 			Process process = new ProcessBuilder()
 					.command(
