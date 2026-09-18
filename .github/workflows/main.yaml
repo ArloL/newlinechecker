@@ -16,7 +16,7 @@ env:
 
 jobs:
   debug:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
     - name: Dump GitHub context
       env:
@@ -45,7 +45,7 @@ jobs:
     - name: Dump environment variables
       run: set
   version:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     permissions:
       contents: write
     outputs:
